@@ -1,0 +1,281 @@
+{
+  "packages": {
+    "docker": {
+      "aliases": ["docker-ce", "docker-engine", "docker.io"],
+      "apt": "docker.io",
+      "pacman": "docker",
+      "brew": "docker",
+      "dnf": "docker",
+      "winget": "Docker.DockerDesktop",
+      "choco": "docker-desktop"
+    },
+    "node": {
+      "aliases": ["nodejs", "node.js", "npm"],
+      "apt": "nodejs",
+      "pacman": "nodejs",
+      "brew": "node",
+      "dnf": "nodejs",
+      "winget": "OpenJS.NodeJS",
+      "choco": "nodejs",
+      "versions": {
+        "lts": {
+          "brew": "node@lts",
+          "winget": "OpenJS.NodeJS.LTS",
+          "choco": "nodejs-lts"
+        }
+      }
+    },
+    "python": {
+      "aliases": ["python3", "py", "pip"],
+      "apt": "python3",
+      "pacman": "python",
+      "brew": "python@3",
+      "dnf": "python3",
+      "winget": "Python.Python.3.12",
+      "choco": "python"
+    },
+    "git": {
+      "aliases": ["scm"],
+      "apt": "git",
+      "pacman": "git",
+      "brew": "git",
+      "dnf": "git",
+      "winget": "Git.Git",
+      "choco": "git"
+    },
+    "vscode": {
+      "aliases": ["code", "visual-studio-code", "vs-code"],
+      "apt": "code",
+      "pacman": "visual-studio-code-bin",
+      "brew": "visual-studio-code",
+      "dnf": "code",
+      "winget": "Microsoft.VisualStudioCode",
+      "choco": "vscode"
+    },
+    "vim": {
+      "aliases": ["vi", "neovim", "nvim"],
+      "apt": "vim",
+      "pacman": "vim",
+      "brew": "vim",
+      "dnf": "vim",
+      "winget": "vim.vim",
+      "choco": "vim"
+    },
+    "nginx": {
+      "aliases": ["web-server"],
+      "apt": "nginx",
+      "pacman": "nginx",
+      "brew": "nginx",
+      "dnf": "nginx",
+      "winget": "Nginx.Nginx",
+      "choco": "nginx"
+    },
+    "postgres": {
+      "aliases": ["postgresql", "psql", "pg"],
+      "apt": "postgresql",
+      "pacman": "postgresql",
+      "brew": "postgresql@16",
+      "dnf": "postgresql-server",
+      "winget": "PostgreSQL.PostgreSQL",
+      "choco": "postgresql"
+    },
+    "mysql": {
+      "aliases": ["mariadb", "sql"],
+      "apt": "mysql-server",
+      "pacman": "mysql",
+      "brew": "mysql",
+      "dnf": "mysql-server",
+      "winget": "Oracle.MySQL",
+      "choco": "mysql"
+    },
+    "redis": {
+      "aliases": ["redis-server"],
+      "apt": "redis-server",
+      "pacman": "redis",
+      "brew": "redis",
+      "dnf": "redis",
+      "winget": "Redis.Redis",
+      "choco": "redis"
+    },
+    "mongodb": {
+      "aliases": ["mongo", "mongodb-server"],
+      "apt": "mongodb",
+      "pacman": "mongodb",
+      "brew": "mongodb-community",
+      "dnf": "mongodb-org-server",
+      "winget": "MongoDB.Server",
+      "choco": "mongodb"
+    },
+    "curl": {
+      "aliases": ["libcurl"],
+      "apt": "curl",
+      "pacman": "curl",
+      "brew": "curl",
+      "dnf": "curl",
+      "winget": "cURL.cURL",
+      "choco": "curl"
+    },
+    "wget": {
+      "aliases": [],
+      "apt": "wget",
+      "pacman": "wget",
+      "brew": "wget",
+      "dnf": "wget",
+      "winget": "GNU.Wget",
+      "choco": "wget"
+    },
+    "htop": {
+      "aliases": ["top", "system-monitor"],
+      "apt": "htop",
+      "pacman": "htop",
+      "brew": "htop",
+      "dnf": "htop",
+      "winget": "htop.htop",
+      "choco": "htop"
+    },
+    "tmux": {
+      "aliases": ["terminal-multiplexer"],
+      "apt": "tmux",
+      "pacman": "tmux",
+      "brew": "tmux",
+      "dnf": "tmux",
+      "winget": "tmux.tmux",
+      "choco": "tmux"
+    },
+    "gcc": {
+      "aliases": ["g++", "build-essential", "compiler"],
+      "apt": "build-essential",
+      "pacman": "gcc",
+      "brew": "gcc",
+      "dnf": "gcc",
+      "winget": "GCC.GCC",
+      "choco": "mingw"
+    },
+    "make": {
+      "aliases": ["cmake", "build-tools"],
+      "apt": "make",
+      "pacman": "make",
+      "brew": "make",
+      "dnf": "make",
+      "winget": "GnuWin32.Make",
+      "choco": "make"
+    },
+    "rust": {
+      "aliases": ["rustc", "cargo"],
+      "apt": "rustc",
+      "pacman": "rust",
+      "brew": "rust",
+      "dnf": "rust",
+      "winget": "Rustlang.Rust.MSVC",
+      "choco": "rust"
+    },
+    "go": {
+      "aliases": ["golang"],
+      "apt": "golang",
+      "pacman": "go",
+      "brew": "go",
+      "dnf": "golang",
+      "winget": "GoLang.Go",
+      "choco": "golang"
+    },
+    "java": {
+      "aliases": ["jdk", "openjdk", "jre"],
+      "apt": "openjdk-17-jdk",
+      "pacman": "jdk-openjdk",
+      "brew": "openjdk",
+      "dnf": "java-17-openjdk",
+      "winget": "Oracle.JavaRuntimeEnvironment",
+      "choco": "openjdk"
+    },
+    "chrome": {
+      "aliases": ["google-chrome", "chromium"],
+      "apt": "google-chrome-stable",
+      "pacman": "chromium",
+      "brew": "google-chrome",
+      "dnf": "google-chrome-stable",
+      "winget": "Google.Chrome",
+      "choco": "googlechrome"
+    },
+    "firefox": {
+      "aliases": ["mozilla-firefox"],
+      "apt": "firefox",
+      "pacman": "firefox",
+      "brew": "firefox",
+      "dnf": "firefox",
+      "winget": "Mozilla.Firefox",
+      "choco": "firefox"
+    },
+    "slack": {
+      "aliases": ["slack-desktop"],
+      "apt": "slack-desktop",
+      "pacman": "slack-desktop",
+      "brew": "slack",
+      "dnf": "slack",
+      "winget": "SlackTechnologies.Slack",
+      "choco": "slack"
+    },
+    "zoom": {
+      "aliases": ["zoom-client"],
+      "apt": "zoom",
+      "pacman": "zoom",
+      "brew": "zoom",
+      "dnf": "zoom",
+      "winget": "Zoom.Zoom",
+      "choco": "zoom"
+    },
+    "terraform": {
+      "aliases": ["tf"],
+      "apt": "terraform",
+      "pacman": "terraform",
+      "brew": "terraform",
+      "dnf": "terraform",
+      "winget": "Hashicorp.Terraform",
+      "choco": "terraform"
+    },
+    "kubectl": {
+      "aliases": ["kubernetes-cli", "k8s"],
+      "apt": "kubectl",
+      "pacman": "kubectl",
+      "brew": "kubectl",
+      "dnf": "kubectl",
+      "winget": "Kubernetes.kubectl",
+      "choco": "kubernetes-cli"
+    },
+    "aws": {
+      "aliases": ["awscli", "aws-cli"],
+      "apt": "awscli",
+      "pacman": "aws-cli",
+      "brew": "awscli",
+      "dnf": "awscli",
+      "winget": "Amazon.AWSCLI",
+      "choco": "awscli"
+    },
+    "ffmpeg": {
+      "aliases": ["video-converter"],
+      "apt": "ffmpeg",
+      "pacman": "ffmpeg",
+      "brew": "ffmpeg",
+      "dnf": "ffmpeg",
+      "winget": "Gyan.FFmpeg",
+      "choco": "ffmpeg"
+    },
+    "vlc": {
+      "aliases": ["videolan", "media-player"],
+      "apt": "vlc",
+      "pacman": "vlc",
+      "brew": "vlc",
+      "dnf": "vlc",
+      "winget": "VideoLAN.VLC",
+      "choco": "vlc"
+    },
+    "obs": {
+      "aliases": ["obs-studio", "screen-recorder"],
+      "apt": "obs-studio",
+      "pacman": "obs-studio",
+      "brew": "obs",
+      "dnf": "obs-studio",
+      "winget": "OBSProject.OBSStudio",
+      "choco": "obs-studio"
+    }
+  }
+}
