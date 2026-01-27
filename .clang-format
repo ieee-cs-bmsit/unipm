@@ -97,6 +97,6 @@ SpacesInSquareBrackets: false
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
-TabWidth:        4
-UseTab:          Never
+
+
 ...
