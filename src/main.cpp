@@ -1,17 +1,17 @@
-#include "unipm/types.h"
-#include "unipm/os_detector.h"
-#include "unipm/pm_detector.h"
-#include "unipm/parser.h"
-#include "unipm/config.h"
-#include "unipm/resolver.h"
-#include "unipm/adapter.h"
-#include "unipm/executor.h"
-#include "unipm/safety.h"
-#include "unipm/ui.h"
-
 #include <iostream>
 #include <memory>
 #include <vector>
+
+#include "unipm/adapter.h"
+#include "unipm/config.h"
+#include "unipm/executor.h"
+#include "unipm/os_detector.h"
+#include "unipm/parser.h"
+#include "unipm/pm_detector.h"
+#include "unipm/resolver.h"
+#include "unipm/safety.h"
+#include "unipm/types.h"
+#include "unipm/ui.h"
 
 using namespace unipm;
 

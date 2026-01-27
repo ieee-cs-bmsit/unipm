@@ -1,4 +1,5 @@
 #include "unipm/adapter.h"
+
 #include <sstream>
 
 namespace unipm {
