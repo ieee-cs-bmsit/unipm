@@ -21,9 +21,9 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/third_party)
 
-# Source files
-set(UNIPM_SOURCES
-    src/main.cpp
+# Source files (excluding main.cpp for library)
+set(UNIPM_LIB_SOURCES
+    src/types.cpp
     src/os_detector.cpp
     src/pm_detector.cpp
     src/parser.cpp
@@ -40,8 +40,12 @@ set(UNIPM_SOURCES
     src/adapters/choco_adapter.cpp
 )
 
+# Create library for testing
+add_library(unipm_lib STATIC ${UNIPM_LIB_SOURCES})
+
 # Main executable
-add_executable(unipm ${UNIPM_SOURCES})
+add_executable(unipm src/main.cpp)
+target_link_libraries(unipm PRIVATE unipm_lib)
 
 # Platform-specific libraries
 if(WIN32)

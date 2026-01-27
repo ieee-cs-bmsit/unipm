@@ -1,0 +1,64 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+# Standard to msysgit
+*.doc    diff=astextplain
+*.DOC    diff=astextplain
+*.docx   diff=astextplain
+*.DOCX   diff=astextplain
+*.dot    diff=astextplain
+*.DOT    diff=astextplain
+*.pdf    diff=astextplain
+*.PDF    diff=astextplain
+*.rtf    diff=astextplain
+*.RTF    diff=astextplain
+
+# Binary files
+*.dll binary
+*.exe binary
+*.a binary
+*.so binary
+*.lib binary
+*.dylib binary
+*.ncb binary
+*.suo binary
+*.sdf binary
+*.idb binary
+*.pdb binary
+*.ilk binary
+*.exp binary
+*.gch binary
+*.pch binary
+
+# Shell scripts
+*.sh     text eol=lf
+*.bash   text eol=lf
+*.ps1    text eol=crlf
+*.cmd    text eol=crlf
+*.bat    text eol=crlf
+
+# C++ files
+*.cpp    text
+*.hpp    text
+*.c      text
+*.h      text
+*.cc     text
+*.hh     text
+*.cxx    text
+*.hxx    text
+
+# Config files
+*.json   text
+*.yml    text
+*.yaml   text
+*.xml    text
+*.md     text
+*.txt    text

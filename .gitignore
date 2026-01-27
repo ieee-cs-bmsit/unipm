@@ -1,0 +1,40 @@
+# .gitignore for unipm
+
+# Build directories
+build/
+cmake-build-*/
+*.out
+
+# Binary files
+*.exe
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Test outputs
+Testing/
+CTestTestfile.cmake
+
+# Logs
+*.log
+
+# User config (optional - you may want to track this)
+# ~/.config/unipm/packages.json
+# %APPDATA%\unipm\packages.json
