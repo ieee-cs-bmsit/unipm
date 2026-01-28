@@ -50,7 +50,9 @@ enum class CommandType {
     LIST,
     INFO,
     HELP,
-    VERSION
+    VERSION,
+    DOCTOR,
+    SELF_UNINSTALL
 };
 
 // OS information structure

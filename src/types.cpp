@@ -53,6 +53,8 @@ std::string commandTypeToString(CommandType cmd) {
         case CommandType::INFO: return "info";
         case CommandType::HELP: return "help";
         case CommandType::VERSION: return "version";
+        case CommandType::DOCTOR: return "doctor";
+        case CommandType::SELF_UNINSTALL: return "uninstall --self";
     }
     return "unknown";
 }

@@ -32,6 +32,8 @@ set(UNIPM_LIB_SOURCES
     src/executor.cpp
     src/safety.cpp
     src/ui.cpp
+    src/doctor.cpp
+    src/self_uninstall.cpp
     src/adapters/apt_adapter.cpp
     src/adapters/pacman_adapter.cpp
     src/adapters/brew_adapter.cpp

@@ -4,12 +4,14 @@
 
 #include "unipm/adapter.h"
 #include "unipm/config.h"
+#include "unipm/doctor.h"
 #include "unipm/executor.h"
 #include "unipm/os_detector.h"
 #include "unipm/parser.h"
 #include "unipm/pm_detector.h"
 #include "unipm/resolver.h"
 #include "unipm/safety.h"
+#include "unipm/self_uninstall.h"
 #include "unipm/types.h"
 #include "unipm/ui.h"
 
@@ -29,6 +31,16 @@ int main(int argc, char* argv[]) {
     if (cmd.type == CommandType::VERSION) {
         UI::printVersion();
         return 0;
+    }
+    
+    // Handle doctor command
+    if (cmd.type == CommandType::DOCTOR) {
+        return Doctor::runDiagnostics();
+    }
+    
+    // Handle self-uninstall command
+    if (cmd.type == CommandType::SELF_UNINSTALL) {
+        return SelfUninstaller::uninstall(cmd.autoYes);
     }
     
     // Validate command

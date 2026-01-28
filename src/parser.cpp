@@ -17,10 +17,17 @@ Command Parser::parse(int argc, char* argv[]) {
         args.push_back(argv[i]);
     }
     
+    // Check for "uninstall --self" command
+    if (args[0] == "uninstall" && args.size() > 1 && args[1] == "--self") {
+        cmd.type = CommandType::SELF_UNINSTALL;
+        return cmd;
+    }
+    
     // First argument is the command
     cmd.type = parseCommandType(args[0]);
     
-    if (cmd.type == CommandType::HELP || cmd.type == CommandType::VERSION) {
+    if (cmd.type == CommandType::HELP || cmd.type == CommandType::VERSION || 
+        cmd.type == CommandType::DOCTOR) {
         return cmd;
     }
     
@@ -68,6 +75,7 @@ CommandType Parser::parseCommandType(const std::string& cmd) {
     if (lower == "info" || lower == "show") return CommandType::INFO;
     if (lower == "help" || lower == "--help" || lower == "-h") return CommandType::HELP;
     if (lower == "version" || lower == "--version" || lower == "-v") return CommandType::VERSION;
+    if (lower == "doctor" || lower == "dr") return CommandType::DOCTOR;
     
     return CommandType::HELP;
 }

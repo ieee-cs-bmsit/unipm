@@ -5,8 +5,23 @@
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Downloads](https://img.shields.io/github/downloads/ieee-cs-bmsit/unipm/total)](https://github.com/ieee-cs-bmsit/unipm/releases)
 
 **unipm** is a cross-platform command-line tool that simplifies software installation with natural commands. It automatically detects your OS and package manager, resolves package names, and executes the correct installation command — all while maintaining transparency and safety.
+
+## 🚀 Quick Install
+
+**Linux/macOS:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/ieee-cs-bmsit/unipm/main/scripts/install.sh | bash
+```
+
+**Windows (PowerShell):**
+```powershell
+iwr -useb https://raw.githubusercontent.com/ieee-cs-bmsit/unipm/main/scripts/install.ps1 | iex
+```
+
+Or download binaries directly from [releases](https://github.com/ieee-cs-bmsit/unipm/releases/latest).
 
 ## Features
 
