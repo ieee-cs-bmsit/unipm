@@ -94,8 +94,8 @@ struct ResolvedPackage {
 struct ExecutionResult {
     bool success;
     int exitCode;
-    std::string stdout;
-    std::string stderr;
+    std::string stdoutOutput;
+    std::string stderrOutput;
     std::string command;
 };
 

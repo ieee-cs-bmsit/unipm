@@ -70,14 +70,18 @@ OSInfo OSDetector::detectWindows() {
     
     // Note: GetVersionEx is deprecated but still works
     // In production, use VerifyVersionInfo or RtlGetVersion
+    #ifdef _MSC_VER
     #pragma warning(push)
     #pragma warning(disable: 4996)
+    #endif
     if (GetVersionEx((OSVERSIONINFO*)&osvi)) {
         std::ostringstream oss;
         oss << osvi.dwMajorVersion << "." << osvi.dwMinorVersion;
         info.version = oss.str();
     }
+    #ifdef _MSC_VER
     #pragma warning(pop)
+    #endif
 #endif
     
     return info;

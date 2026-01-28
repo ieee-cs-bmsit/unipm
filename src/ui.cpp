@@ -126,13 +126,13 @@ void UI::printResult(const ExecutionResult& result) {
         printError("Command failed with exit code " + std::to_string(result.exitCode));
     }
     
-    if (!result.stdout.empty()) {
-        std::cout << result.stdout;
+    if (!result.stdoutOutput.empty()) {
+        std::cout << result.stdoutOutput;
     }
     
-    if (!result.stderr.empty() && !result.success) {
+    if (!result.stderrOutput.empty() && !result.success) {
         std::cerr << colorize("Error output:", RED) << std::endl;
-        std::cerr << result.stderr;
+        std::cerr << result.stderrOutput;
     }
 }
 

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <array>
+#include <iostream>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -20,7 +21,9 @@ ExecutionResult Executor::execute(const std::string& command, bool requiresRoot)
     std::string finalCommand = command;
 
     // Add sudo if needed (Unix only)
-#ifndef _WIN32
+#ifdef _WIN32
+    (void)requiresRoot;  // Unused on Windows
+#else
     if (requiresRoot && !isAdmin()) {
         if (hasSudo()) {
             finalCommand = prependSudo(command);
@@ -49,7 +52,9 @@ ExecutionResult Executor::execute(const std::string& command, bool requiresRoot)
 void Executor::preview(const std::string& command, bool requiresRoot) {
     std::string finalCommand = command;
 
-#ifndef _WIN32
+#ifdef _WIN32
+    (void)requiresRoot;  // Unused on Windows
+#else
     if (requiresRoot && !isAdmin() && hasSudo()) {
         finalCommand = prependSudo(command);
     }
@@ -104,7 +109,7 @@ ExecutionResult Executor::executeWindows(const std::string& command) {
 
     if (!CreatePipe(&hStdoutRead, &hStdoutWrite, &sa, 0) ||
         !CreatePipe(&hStderrRead, &hStderrWrite, &sa, 0)) {
-        result.stderr = "Failed to create pipes";
+        result.stderrOutput = "Failed to create pipes";
         return result;
     }
 
@@ -141,20 +146,20 @@ ExecutionResult Executor::executeWindows(const std::string& command) {
         while (ReadFile(hStdoutRead, buffer, sizeof(buffer) - 1, &bytesRead, NULL) &&
                bytesRead > 0) {
             buffer[bytesRead] = '\0';
-            result.stdout += buffer;
+            result.stdoutOutput += buffer;
         }
 
         // Read stderr
         while (ReadFile(hStderrRead, buffer, sizeof(buffer) - 1, &bytesRead, NULL) &&
                bytesRead > 0) {
             buffer[bytesRead] = '\0';
-            result.stderr += buffer;
+            result.stderrOutput += buffer;
         }
 
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
     } else {
-        result.stderr = "Failed to create process";
+        result.stderrOutput = "Failed to create process";
     }
 
     CloseHandle(hStdoutRead);
@@ -164,7 +169,7 @@ ExecutionResult Executor::executeWindows(const std::string& command) {
 #else
     ExecutionResult result;
     result.success = false;
-    result.stderr = "Windows execution not available on this platform";
+    result.stderrOutput = "Windows execution not available on this platform";
     return result;
 #endif
 }
@@ -179,11 +184,11 @@ ExecutionResult Executor::executeUnix(const std::string& command) {
     FILE* pipe = popen(fullCommand.c_str(), "r");
 
     if (!pipe) {
-        result.stderr = "Failed to execute command";
+        result.stderrOutput = "Failed to execute command";
         return result;
     }
 
-    result.stdout = captureOutput(pipe);
+    result.stdoutOutput = captureOutput(pipe);
     result.exitCode = pclose(pipe);
 
     // pclose returns exit status in format that needs WEXITSTATUS macro

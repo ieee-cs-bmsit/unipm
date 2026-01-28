@@ -6,8 +6,8 @@ Write-Host "Building unipm..." -ForegroundColor Cyan
 New-Item -ItemType Directory -Force -Path build | Out-Null
 Set-Location build
 
-# Run CMake
-cmake ..
+# Run CMake with Visual Studio generator
+cmake -G "Visual Studio 17 2022" -A x64 ..
 
 # Build
 cmake --build . --config Release

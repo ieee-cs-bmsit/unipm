@@ -1,7 +1,7 @@
 #pragma once
 
 #include "unipm/types.h"
-#include "third_party/json.hpp"
+#include <json.hpp>
 #include <string>
 #include <map>
 #include <vector>

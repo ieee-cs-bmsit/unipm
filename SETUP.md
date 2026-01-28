@@ -1,258 +1,214 @@
-# unipm Setup Instructions
+# UniPM Build Setup
 
-## Quick Setup
+## Build Requirements
 
-### Prerequisites
+UniPM requires a C++17 compiler and CMake 3.15 or later.
 
-1. **C++17 Compiler**
-   - Linux: GCC 7+ or Clang 5+
-   - macOS: Xcode 10+ or Apple Clang
-   - Windows: Visual Studio 2017+ or MinGW-w64
+### Windows
 
-2. **CMake 3.15 or higher**
+You have **three options** for building on Windows:
 
-3. **Git** (for cloning)
+#### Option 1: Visual Studio (Recommended for Windows)
 
-### Installation Steps
+1. **Install Visual Studio 2022** (or 2019/2017):
+   - Download from https://visualstudio.microsoft.com/downloads/
+   - During installation, select **"Desktop development with C++"** workload
+   - This includes the MSVC compiler, CMake, and build tools
 
-#### 1. Clone the Repository
+2. **Build from Developer Command Prompt**:
+   ```powershell
+   # Open "Developer Command Prompt for VS 2022" from Start Menu
+   # Then navigate to your project:
+   cd d:\unipm
+   .\scripts\build.ps1
+   ```
+
+3. **Or build from regular PowerShell** (if Visual Studio is installed):
+   ```powershell
+   .\scripts\build.ps1
+   ```
+
+#### Option 2: Visual Studio Build Tools (Lighter Weight)
+
+If you don't want the full Visual Studio IDE:
+
+1. **Install Build Tools**:
+   - Download from https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022
+   - Run the installer
+   - Select **"C++ build tools"** workload
+   - Install
+
+2. **Build using the script**:
+   ```powershell
+   # Open "Developer Command Prompt for VS 2022" OR
+   # Open PowerShell and run:
+   .\scripts\build.ps1
+   ```
+
+#### Option 3: MinGW-w64 (GCC for Windows)
+
+If you prefer GCC or can't install Visual Studio:
+
+1. **Install MinGW-w64**:
+   - Download from https://www.mingw-w64.org/ or use package managers:
+     ```powershell
+     # Using chocolatey
+     choco install mingw
+
+     # Using scoop
+     scoop install mingw
+     ```
+
+2. **Use the MinGW build script**:
+   ```powershell
+   .\scripts\build-mingw.ps1
+   ```
+
+### Linux
 
 ```bash
-git clone https://github.com/ieee-cs-bmsit/unipm.git
-cd unipm
-```
+# Ubuntu/Debian
+sudo apt update
+sudo apt install build-essential cmake
 
-#### 2. Download Dependencies
+# Fedora/RHEL
+sudo dnf install gcc-c++ cmake
 
-Download the nlohmann/json header:
+# Arch
+sudo pacman -S base-devel cmake
 
-```bash
-# Linux/macOS
-curl -L https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp -o third_party/json.hpp
-
-# Windows PowerShell
-Invoke-WebRequest -Uri "https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp" -OutFile "third_party\json.hpp"
-```
-
-#### 3. Build
-
-**Linux/macOS:**
-```bash
+# Build
 chmod +x scripts/build.sh
 ./scripts/build.sh
 ```
 
-**Windows:**
+### macOS
+
+```bash
+# Install Xcode Command Line Tools
+xcode-select --install
+
+# Or install via Homebrew
+brew install cmake
+
+# Build
+chmod +x scripts/build.sh
+./scripts/build.sh
+```
+
+## Building
+
+### Windows
 ```powershell
 .\scripts\build.ps1
 ```
 
-#### 4. Install (Optional)
-
-**Linux/macOS:**
+### Linux/macOS
 ```bash
-cd build
-sudo make install
+./scripts/build.sh
 ```
-
-This installs:
-- Binary: `/usr/local/bin/unipm`
-- Data: `/usr/local/share/unipm/packages.json`
-
-**Windows:**
-Copy `build\bin\Release\unipm.exe` to a directory in your PATH, such as:
-- `C:\Windows\System32` (requires admin)
-- `C:\Program Files\unipm\` (create directory and add to PATH)
-
-Also copy `data\packages.json` to `C:\Program Files\unipm\`
-
-#### 5. Test
-
-```bash
-cd build
-ctest
-```
-
-Or run the binary directly:
-```bash
-# Linux/macOS
-./bin/unipm --version
-
-# Windows
-.\bin\Release\unipm.exe --version
-```
-
-## Development Setup
-
-### Project Structure
-
-```
-unipm/
-├── CMakeLists.txt          # Root CMake configuration
-├── README.md               # Project documentation
-├── LICENSE                 # MIT license
-├── CHANGELOG.md            # Version history
-├── include/                # Header files
-│   └── unipm/
-│       ├── types.h
-│       ├── os_detector.h
-│       ├── pm_detector.h
-│       ├── parser.h
-│       ├── resolver.h
-│       ├── config.h
-│       ├── adapter.h
-│       ├── executor.h
-│       ├── safety.h
-│       └── ui.h
-├── src/                    # Implementation files
-│   ├── main.cpp
-│   ├── types.cpp
-│   ├── os_detector.cpp
-│   ├── pm_detector.cpp
-│   ├── parser.cpp
-│   ├── resolver.cpp
-│   ├── config.cpp
-│   ├── executor.cpp
-│   ├── safety.cpp
-│   ├── ui.cpp
-│   └── adapters/
-│       ├── apt_adapter.cpp
-│       ├── pacman_adapter.cpp
-│       ├── brew_adapter.cpp
-│       ├── dnf_adapter.cpp
-│       ├── winget_adapter.cpp
-│       └── choco_adapter.cpp
-├── data/                   # Package database
-│   └── packages.json
-├── third_party/            # External dependencies
-│   ├── json.hpp           # nlohmann/json (download separately)
-│   └── README.md
-├── tests/                  # Unit tests
-│   ├── CMakeLists.txt
-│   ├── test_os_detector.cpp
-│   └── test_resolver.cpp
-├── scripts/                # Build scripts
-│   ├── build.sh           # Unix build script
-│   └── build.ps1          # Windows build script
-└── docs/                   # Documentation
-    └── ARCHITECTURE.md
-```
-
-### Building from Source
-
-#### Debug Build
-
-```bash
-mkdir -p build-debug
-cd build-debug
-cmake -DCMAKE_BUILD_TYPE=Debug ..
-make
-```
-
-#### Release Build
-
-```bash
-mkdir -p build-release
-cd build-release
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make
-```
-
-### Running Tests
-
-```bash
-cd build
-ctest --verbose
-```
-
-Or run individual tests:
-```bash
-./bin/test_os_detector
-./bin/test_resolver
-```
-
-## Extending unipm
-
-### Adding New Packages
-
-Edit `data/packages.json`:
-
-```json
-{
-  "packages": {
-    "your-package": {
-      "aliases": ["alternative-name", "another-alias"],
-      "apt": "package-name-debian",
-      "pacman": "package-name-arch",
-      "brew": "package-name-homebrew",
-      "dnf": "package-name-fedora",
-      "winget": "Publisher.PackageName",
-      "choco": "package-name-chocolatey"
-    }
-  }
-}
-```
-
-### Adding a New Package Manager
-
-1. **Add enum value** in `include/unipm/types.h`:
-   ```cpp
-   enum class PackageManager {
-       // ... existing values ...
-       YOUR_PM,
-   };
-   ```
-
-2. **Create adapter** in `src/adapters/yourpm_adapter.cpp`:
-   ```cpp
-   class YourPMAdapter : public PackageManagerAdapter {
-       // Implement interface methods
-   };
-   ```
-
-3. **Update factory** in `src/adapters/choco_adapter.cpp`:
-   ```cpp
-   std::unique_ptr<PackageManagerAdapter> AdapterFactory::create(PackageManager pm) {
-       // Add case for YOUR_PM
-   }
-   ```
-
-4. **Add detection** in `src/pm_detector.cpp`
 
 ## Troubleshooting
 
-### Build Errors
+### Windows: "nmake not found" or "CMAKE_CXX_COMPILER not set"
 
-**Missing json.hpp:**
+**Problem**: You're seeing errors like:
 ```
-fatal error: third_party/json.hpp: No such file or directory
+CMake Error: CMAKE_CXX_COMPILER not set
+Running 'nmake' '-?' failed with: no such file or directory
 ```
-Solution: Download nlohmann/json as described in step 2 above.
 
-**CMake version too old:**
-```
-CMake 3.15 or higher is required
-```
-Solution: Update CMake or use a newer version.
+**Solutions**:
 
-### Runtime Issues
+1. **Install Visual Studio** with C++ tools (see Option 1 above)
+2. **Build from Developer Command Prompt** instead of regular PowerShell
+3. **Or use MinGW** (see Option 3 above and use `build-mingw.ps1`)
 
-**Package database not found:**
-```
-Could not load package database
-```
-Solution: Ensure `data/packages.json` is in the correct location:
-- Development: Run from project root
-- Installed: `/usr/local/share/unipm/packages.json` (Unix) or `C:\Program Files\unipm\packages.json` (Windows)
+### CMake not found
 
-**No package manager found:**
-```
-No package manager found on this system
-```
-Solution: Install at least one supported package manager (apt, pacman, brew, dnf, winget, or chocolatey).
+Install CMake from https://cmake.org/download/ or use a package manager:
+```powershell
+# Windows (chocolatey)
+choco install cmake
 
-## Getting Help
+# Windows (scoop)
+scoop install cmake
+```
 
-- Check the [README](../README.md) for usage examples
-- Review [ARCHITECTURE.md](../docs/ARCHITECTURE.md) for design details
-- Open an issue on GitHub for bugs or feature requests
+### Tests subdirectory error
+
+If you see "Cannot find source file: tests/CMakeLists.txt":
+```powershell
+# Create the tests directory structure
+New-Item -ItemType Directory -Force -Path tests
+```
+
+## Manual Build
+
+If the scripts don't work, you can build manually:
+
+### Windows (Visual Studio)
+```powershell
+mkdir build
+cd build
+cmake -G "Visual Studio 17 2022" -A x64 ..
+cmake --build . --config Release
+```
+
+### Windows (MinGW)
+```powershell
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
+cmake --build . --config Release
+```
+
+### Linux/macOS
+```bash
+mkdir build
+cd build cmake ..
+make -j$(nproc)  # Linux
+make -j$(sysctl -n hw.ncpu)  # macOS
+```
+
+## Installation
+
+After building, the binary will be located at:
+- Windows: `build\bin\Release\unipm.exe`
+- Linux/macOS: `build/bin/unipm`
+
+To install system-wide:
+
+### Windows
+```powershell
+# Copy to a directory in your PATH, e.g.:
+Copy-Item build\bin\Release\unipm.exe C:\Windows\System32\
+# Or add the build\bin\Release directory to your PATH
+```
+
+### Linux
+```bash
+sudo cp build/bin/unipm /usr/local/bin/
+```
+
+### macOS
+```bash
+sudo cp build/bin/unipm /usr/local/bin/
+```
+
+## Development
+
+### Running Tests
+```bash
+cd build
+ctest --output-on-failure
+```
+
+### Clean Build
+```powershell
+# Windows
+Remove-Item -Recurse -Force build
+
+# Linux/macOS
+rm -rf build
+```

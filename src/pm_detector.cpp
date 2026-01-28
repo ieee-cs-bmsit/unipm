@@ -133,6 +133,7 @@ std::string PMDetector::getBinaryPath(const std::string& name) {
 }
 
 std::string PMDetector::getVersion(PackageManager pm, const std::string& path) {
+    (void)path;  // Parameter reserved for future use
     std::string command;
     
     switch (pm) {
