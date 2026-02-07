@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_gear" />
 
     <style>
         * {
@@ -27,6 +29,146 @@
             --off-white: #F8FAF9;
             --gray: #8B9A94;
             --dark: #2C3E37;
+            --surface: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Search Section */
+
+        #avail-pac {
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 100;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border-radius: 12px;
+            border: 2px solid rgba(127, 176, 105, 0.2);
+            background: var(--white);
+            font-family: inherit;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .search-input:focus {
+            border-color: var(--leaf-green);
+            box-shadow: 0 8px 24px rgba(127, 176, 105, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--gray);
+            font-size: 1.25rem;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .search-input-wrapper .material-symbols-outlined {
+            position: absolute;
+            left: 1rem;
+            color: var(--gray);
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .search-results {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 12px 32px var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            padding: 0.5rem;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-result-item:hover {
+            background: var(--off-white);
+        }
+
+        .search-result-item .pkg-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .search-result-item .pkg-alias {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-left: 0.5rem;
+        }
+
+        .search-result-item .pm-badge {
+            font-size: 0.75rem;
+            background: var(--light-green);
+            color: var(--dark-green);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .no-results {
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .no-results .suggestion {
+            display: block;
+            margin-top: 1rem;
+            color: var(--white);
+            background: var(--leaf-green);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .no-results .suggestion:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
         }
 
         body {
@@ -274,6 +416,15 @@
             line-height: 1.6;
         }
 
+        /* icon */
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+
         /* CTA */
         .cta {
             text-align: center;
@@ -336,7 +487,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 700px) {
             .install-section {
                 padding: 2rem 1.5rem;
             }
@@ -347,20 +498,37 @@
 
             .tagline {
                 font-size: 1.1rem;
-                width:50%
+                width: 60%;
+                max-width: 500px;
+                margin-bottom: 2rem;
             }
 
             .install-tabs {
                 flex-direction: column;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .tab {
                 width: 100%;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .install-section {
-                width: 50%;
+                width: 60%;
+                max-width: 600px;
                 justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1.5rem;
+            }
+
+            .search-container,
+            #avail-pac {
+                width: 60%;
+                max-width: 600px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -407,7 +575,20 @@
         <div class="hero-content">
             <div class="logo">📦</div>
             <h1>unipm</h1>
-            <p class="tagline">One command. Any OS. <br> Unified package management for Linux, macOS, and Windows.</p>
+            <p class="tagline">One command. Any OS. Unified package management for Linux, macOS, and Windows.</p>
+            <div id="avail-pac">
+                <h3> Available Packages</h3>
+            </div>
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <span class="material-symbols-outlined">
+                        search_gear
+                    </span>
+                    <input type="text" class="search-input" id="pkgSearch"
+                        placeholder="Search for a package (e.g., Docker, Python, VLC)..." autocomplete="off">
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
 
             <div class="install-section">
                 <div class="install-tabs">
@@ -477,7 +658,7 @@
 
     <section class="features">
         <div class="feature">
-            <div class="feature-icon">�</div>
+            <div class="feature-icon">📦</div>
             <h3>Cross-Platform</h3>
             <p>One unified command works seamlessly across Linux, macOS, and Windows</p>
         </div>
@@ -492,7 +673,7 @@
             <p>Works out of the box. No config files, no setup. Just install and go.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">�</div>
+            <div class="feature-icon">🔒</div>
             <h3>Safe & Transparent</h3>
             <p>Preview commands before execution. Checksum verification. Always shows what it's doing.</p>
         </div>
@@ -554,6 +735,183 @@
                 }
             });
         });
+
+        // Fuzzy Search Logic
+        let packageData = {
+            "docker": { "aliases": ["docker-ce", "docker-engine", "docker.io"] },
+            "node": { "aliases": ["nodejs", "node.js", "npm"] },
+            "python": { "aliases": ["python3", "py", "pip"] },
+            "git": { "aliases": ["scm"] },
+            "vscode": { "aliases": ["code", "visual-studio-code", "vs-code"] },
+            "vim": { "aliases": ["vi", "neovim", "nvim"] },
+            "nginx": { "aliases": ["web-server"] },
+            "postgres": { "aliases": ["postgresql", "psql", "pg"] },
+            "mysql": { "aliases": ["mariadb", "sql"] },
+            "redis": { "aliases": ["redis-server"] },
+            "mongodb": { "aliases": ["mongo", "mongodb-server"] },
+            "curl": { "aliases": ["libcurl"] },
+            "wget": { "aliases": [] },
+            "htop": { "aliases": ["top", "system-monitor"] },
+            "tmux": { "aliases": ["terminal-multiplexer"] },
+            "gcc": { "aliases": ["g++", "build-essential", "compiler"] },
+            "rust": { "aliases": ["rustc", "cargo"] },
+            "go": { "aliases": ["golang"] },
+            "java": { "aliases": ["jdk", "openjdk", "jre"] },
+            "vlc": { "aliases": ["videolan", "media-player"] },
+            "obs": { "aliases": ["obs-studio", "screen-recorder"] },
+            "ffmpeg": { "aliases": ["video-converter"] }
+        };
+
+        async function initSearch() {
+            try {
+                // Try to fetch latest data, fallback to embedded if it fails (e.g. local file access)
+                const response = await fetch('../data/packages.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    packageData = data.packages;
+                    console.log('Successfully loaded remote package data');
+                }
+            } catch (err) {
+                console.warn('Using embedded package data fallback (local access?)');
+            }
+        }
+
+        function levenshteinDistance(s1, s2) {
+            const m = s1.length;
+            const n = s2.length;
+            const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+            for (let i = 0; i <= m; i++) dp[i][0] = i;
+            for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+            for (let i = 1; i <= m; i++) {
+                for (let j = 1; j <= n; j++) {
+                    const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+                    dp[i][j] = Math.min(
+                        dp[i - 1][j] + 1,
+                        dp[i][j - 1] + 1,
+                        dp[i - 1][j - 1] + cost
+                    );
+                }
+            }
+            return dp[m][n];
+        }
+
+        function fuzzyMatch(a, b) {
+            if (a === b) return 1.0;
+            const distance = levenshteinDistance(a.toLowerCase(), b.toLowerCase());
+            const maxLen = Math.max(a.length, b.length);
+            if (maxLen === 0) return 1.0;
+            return 1.0 - (distance / maxLen);
+        }
+
+        const searchInput = document.getElementById('pkgSearch');
+        const resultsBox = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                resultsBox.classList.remove('active');
+                return;
+            }
+
+            const matches = [];
+            for (const [name, info] of Object.entries(packageData)) {
+                let bestScore = fuzzyMatch(query, name);
+                let bestMatch = name;
+                let isAlias = false;
+
+                if (info.aliases) {
+                    for (const alias of info.aliases) {
+                        const score = fuzzyMatch(query, alias);
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMatch = alias;
+                            isAlias = true;
+                        }
+                    }
+                }
+
+                if (bestScore > 0.4) {
+                    matches.push({
+                        name,
+                        bestMatch,
+                        score: bestScore,
+                        isAlias,
+                        info
+                    });
+                }
+            }
+
+            matches.sort((a, b) => b.score - a.score);
+
+            renderResults(matches.slice(0, 5), query);
+        });
+
+        function renderResults(matches, query) {
+            resultsBox.innerHTML = '';
+            if (matches.length === 0) {
+                resultsBox.innerHTML = `
+                    <div class="no-results">
+                        <p>No package found - "${query}" is not available</p>
+                        <a href="https://github.com/ieee-cs-bmsit/unipm/issues/new?title=Package+Request:+${query}&body=Please+add+support+for+${query}" 
+                           target="_blank" class="suggestion">
+                           Suggest this package
+                        </a>
+                    </div>
+                `;
+            } else {
+                matches.forEach(m => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.innerHTML = `
+                        <div>
+                            <span class="pkg-name">${m.name}</span>
+                            ${m.isAlias ? `<span class="pkg-alias">matches "${m.bestMatch}"</span>` : ''}
+                        </div>
+                        <span class="pm-badge">Available</span>
+                    `;
+                    item.addEventListener('click', () => {
+                        // For now just fill search or we could show info
+                        searchInput.value = m.name;
+                        resultsBox.classList.remove('active');
+                        // Trigger some UI update or scroll to info if we had it
+                        // For this demo, let's just show a small alert or update the hero
+                        updateInstallCommands(m.name, m.info);
+                    });
+                    resultsBox.appendChild(item);
+                });
+            }
+            resultsBox.classList.add('active');
+        }
+
+        function updateInstallCommands(name, info) {
+            const linuxCode = document.querySelector('#linux .code-block code');
+            const windowsCode = document.querySelector('#windows .code-block code');
+
+            if (linuxCode) {
+                linuxCode.textContent = `unipm install ${name}`;
+                const copyBtn = document.querySelector('#linux .copy-btn');
+                if (copyBtn) copyBtn.dataset.copy = `unipm install ${name}`;
+            }
+            if (windowsCode) {
+                windowsCode.textContent = `unipm install ${name}`;
+                const copyBtn = document.querySelector('#windows .copy-btn');
+                if (copyBtn) copyBtn.dataset.copy = `unipm install ${name}`;
+            }
+
+            // Highlight the install section
+            document.querySelector('.install-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Close results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                resultsBox.classList.remove('active');
+            }
+        });
+
+        initSearch();
 
         // Smooth scroll for links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
